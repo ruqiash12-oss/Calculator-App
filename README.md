@@ -22,8 +22,8 @@ A responsive calculator with theme switching (3 themes), keyboard-like layout, a
 
 ## Links
 
-- Live Site URL: https://your-live-site-url.com
-- Solution URL: https://www.frontendmentor.io/solutions/your-solution
+- Live Site URL: https://ruqiash12-oss.github.io/Calculator-App/
+- Solution URL: https://www.frontendmentor.io/solutions/calculator-app-with-3-themes--0TkHW2Cay
 
 ## Built with
 

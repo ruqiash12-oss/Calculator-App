@@ -95,6 +95,7 @@ body{
   padding: 0;
   border-radius: 10px;
   background-color: transparent;
+  margin: 0 auto;
 }
 
 /* header */
@@ -194,6 +195,9 @@ header {
 :root:has(#theme3:checked) .theme-check::before { left: 50px; }
 
 /* display */
+html, body{
+  overflow-x: hidden;
+}
 .display{
   background-color: var(--screen-bg-color);
   padding: 25px;
@@ -201,23 +205,50 @@ header {
   text-align: right;
   margin-bottom: 20px;
   color: var(--ui-text-color);
-  overflow:hidden;
-  min-height: 110px;
+
+  height: 110px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-}
-
-.previous-operand{
-  font-size: 18px;
-  min-height: 24px;
-  opacity: 0.75;
+  justify-content: flex-end;
+  gap: 8px;
 }
 
 .current-operand{
   font-size: 40px;
-  min-height: 44px;
   line-height: 1.1;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 52px;
+
+  white-space: normal;
+  word-break: break-all;
+  padding-right: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--red-key-bg-color) rgba(0,0,0,0.15);
+}
+
+.previous-operand{
+  font-size: 18px;
+  min-height: 10px;
+  opacity: 0.75;
+}
+.current-operand::-webkit-scrollbar{
+  width: 6px;
+}
+.current-operand::-webkit-scrollbar-thumb{
+  background: var(--red-key-bg-color);
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,0.15);
+}
+
+.current-operand::-webkit-scrollbar-thumb:hover{
+  background: rgba(255,255,255,0.55);
+}
+.current-operand::-webkit-scrollbar-track{
+  background: rgba(255,255,255,0.10);
+  border-radius: 999px;
 }
 
 /* keypad */
@@ -311,12 +342,21 @@ button:active{
 }
 /*Responsive design */
 @media (max-width: 420px){
+  .calculator-container{
+   max-width: 360px;
+   width: 300px;
+  }
+  .main{
+    gap: 12px;
+    padding: 16px;
+  }
   header{
     padding: 12px 0;
   }
 
   .display{
     padding: 18px;
+    
   }
 
   .current-operand{

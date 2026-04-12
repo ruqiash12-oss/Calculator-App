@@ -67,3 +67,39 @@ function calculateResult(){
     showResult();
   } catch (e) {}
 }
+
+function setupLongPress(selector, action, startDelay = 300, interval = 60) {
+  document.querySelectorAll(selector).forEach((btn) => {
+    let timer = null;
+    let repeater = null;
+
+    const start = (e) => {
+      e.preventDefault();
+      action(btn);
+
+      timer = setTimeout(() => {
+        repeater = setInterval(() => action(btn), interval);
+      }, startDelay);
+    };
+
+    const stop = () => {
+      clearTimeout(timer);
+      clearInterval(repeater);
+      timer = null;
+      repeater = null;
+    };
+
+    btn.addEventListener('pointerdown', start);
+    btn.addEventListener('pointerup', stop);
+    btn.addEventListener('pointercancel', stop);
+    btn.addEventListener('pointerleave', stop);
+  });
+}
+
+setupLongPress('button.number', (btn) => Calculation(btn.textContent.trim()));
+setupLongPress('button.operator', (btn) => {
+  const t = btn.textContent.trim();
+  Calculation(t === 'x' ? '*' : t);
+});
+
+setupLongPress('button.delete-btn', () => deleteResult(), 250, 70);

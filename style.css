@@ -1,0 +1,337 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&display=swap');
+:root{
+  /* Theme 1 */
+  --bg-color: hsl(222, 26%, 31%);
+  --toggle-bg-color: hsl(223, 31%, 20%);
+  --screen-bg-color: hsl(224, 36%, 15%);
+
+  --key-bg-color: hsl(225, 21%, 49%);
+  --key-shadow-color: hsl(224, 28%, 35%);
+
+  --red-key-bg-color: hsl(6, 63%, 50%);
+  --red-key-shadow-color: hsl(6, 70%, 34%);
+
+  --gray-key-bg-color: hsl(0, 0%, 90%);
+  --gray-key-shadow-color: hsl(28, 16%, 65%);
+
+  /* IMPORTANT: separate UI text from key text */
+  --ui-text-color: hsl(0, 0%, 100%);
+  --key-text-color: hsl(221, 14%, 31%);
+  --text-secondary-color: hsl(0, 0%, 100%);
+  --key-hover-bg: hsl(0, 0%, 100%);         
+  --action-hover-bg: hsl(225, 21%, 60%);     
+  --equal-hover-bg: hsl(6, 63%, 60%);
+}
+
+:root:has(#theme2:checked) {
+  /* Theme 2 */
+  --bg-color: hsl(0, 0%, 90%);
+  --toggle-bg-color: hsl(0, 5%, 81%);
+  --screen-bg-color: hsl(0, 0%, 93%);
+
+  --key-bg-color: hsl(185, 42%, 37%);
+  --key-shadow-color: hsl(185, 58%, 25%);
+
+  --red-key-bg-color: hsl(25, 98%, 40%);
+  --red-key-shadow-color: hsl(25, 99%, 27%);
+
+  --gray-key-bg-color: hsl(0, 0%, 90%);
+  --gray-key-shadow-color: hsl(35, 11%, 61%);
+
+  --ui-text-color: hsl(60, 10%, 19%);
+  --key-text-color: hsl(60, 10%, 19%);
+  --text-secondary-color: hsl(0, 0%, 100%);
+  --key-hover-bg: hsl(0, 0%, 100%);
+  --action-hover-bg: hsl(185, 42%, 45%);
+  --equal-hover-bg: hsl(25, 98%, 55%);
+}
+
+:root:has(#theme3:checked) {
+  /* Theme 3 */
+  --bg-color: hsl(268, 75%, 9%);
+  --toggle-bg-color: hsl(268, 71%, 12%);
+  --screen-bg-color: hsl(268, 71%, 12%);
+
+  --key-bg-color: hsl(281, 89%, 26%);
+  --key-shadow-color: hsl(285, 91%, 52%);
+
+  --red-key-bg-color: hsl(176, 100%, 44%);
+  --red-key-shadow-color: hsl(177, 92%, 70%);
+
+  --gray-key-bg-color: hsl(268, 47%, 21%);
+  --gray-key-shadow-color: hsl(290, 70%, 36%);
+
+  --ui-text-color: hsl(52, 100%, 62%);
+  --key-text-color: hsl(52, 100%, 62%);
+  --text-secondary-color: hsl(0, 0%, 100%);
+  --key-hover-bg: hsl(268, 47%, 35%);
+  --action-hover-bg: hsl(281, 89%, 35%);
+  --equal-hover-bg: hsl(176, 100%, 55%);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  margin: 0;
+  font-family: 'League Spartan', sans-serif;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  font-size: 32px;
+  background-color: var(--bg-color);
+  transition: background-color 0.3s ease;
+  padding: 24px;
+}
+
+/* container */
+.calculator-container {
+  width: 100%;
+  max-width: 480px;
+  padding: 0;
+  border-radius: 10px;
+  background-color: transparent;
+}
+
+/* header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.logo{
+  font-size: 20px;
+  color: var(--ui-text-color);
+  font-weight: bold;
+}
+
+.theme{
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+}
+
+.theme-name{
+  font-size: 12px;
+  color: var(--ui-text-color);
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.theme-control{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.theme-hit{
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  height: 100%;
+  cursor: pointer;
+}
+.theme-check{
+  display: flex;           
+  align-items: center;
+  gap: 0;
+}
+.theme-numbers{
+  display: flex;
+  justify-content: space-between;
+  padding: 0 6px;
+  font-size: 12px;
+  color: var(--ui-text-color);
+  font-weight: bold;
+}
+
+/* accessibility labels */
+.sr-only{
+  position:absolute;
+  width:1px;height:1px;
+  padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0,0,0,0);white-space:nowrap;border:0;
+}
+
+/* theme switch */
+.theme-check input[type="radio"]{
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+
+}
+
+.theme-check{
+  background-color: var(--toggle-bg-color);
+  border-radius: 50px;
+  position: relative;
+  width: 70px;
+  height: 25px;
+  cursor: pointer;
+}
+
+/* the knob */
+.theme-check::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 15px;
+  height: 15px;
+  background-color: var(--red-key-bg-color);
+  border-radius: 50%;
+  transition: 0.3s ease;
+}
+
+:root:has(#theme2:checked) .theme-check::before { left: 27px; }
+:root:has(#theme3:checked) .theme-check::before { left: 50px; }
+
+/* display */
+.display{
+  background-color: var(--screen-bg-color);
+  padding: 25px;
+  border-radius: 10px;
+  text-align: right;
+  margin-bottom: 20px;
+  color: var(--ui-text-color);
+  overflow:hidden;
+  min-height: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.previous-operand{
+  font-size: 18px;
+  min-height: 24px;
+  opacity: 0.75;
+}
+
+.current-operand{
+  font-size: 40px;
+  min-height: 44px;
+  line-height: 1.1;
+}
+
+/* keypad */
+.main {
+  background-color: var(--toggle-bg-color);
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 15px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+button{
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 8px;
+  padding: 12px 10px;
+  transition: opacity 0.1s, transform 0.1s;
+}
+
+button:active{
+  opacity: 0.8;
+  transform: translateY(2px);
+}
+
+.number:hover, .operator:hover{
+  background-color: var(--key-hover-bg);
+}
+.delete-btn:hover, .clear-button:hover{
+  background-color: var(--action-hover-bg);
+}
+
+.calculate-button:hover{
+  background-color: var(--equal-hover-bg);
+}
+.number:active, .operator:active{
+  background-color: var(--key-hover-bg);
+}
+.delete-btn:active, .clear-button:active{
+  background-color: var(--action-hover-bg);
+}
+
+.calculate-button:active {
+  background-color: var(--equal-hover-bg);
+}
+.theme-check:active::before{
+  background-color: var(--equal-hover-bg);
+}
+.theme-check:hover::before{
+  background-color: var(--equal-hover-bg);
+}
+.calculate-button,.clear-button{
+  grid-column: span 2;
+}
+
+.number,.operator {
+  background-color: var(--gray-key-bg-color);
+  color: var(--key-text-color);
+  box-shadow: 0px 4px var(--gray-key-shadow-color);
+}
+
+.calculate-button {
+  background-color: var(--red-key-bg-color);
+  color: var(--text-secondary-color);
+  box-shadow: 0px 4px var(--red-key-shadow-color);
+}
+
+.clear-button, .delete-btn {
+  background-color: var(--key-bg-color);
+  color: var(--text-secondary-color);
+  box-shadow: 0px 4px var(--key-shadow-color);
+}
+
+/* Theme 3: "=" text should be dark */
+:root:has(#theme3:checked) .calculate-button{
+  color: hsl(0, 0%, 0%);
+}
+
+/* attribution */
+.attribution { 
+  font-size: 0.6875rem;
+  text-align: center;
+  margin-top: 20px;
+  color: var(--ui-text-color);
+}
+
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
+/*Responsive design */
+@media (max-width: 420px){
+  header{
+    padding: 12px 0;
+  }
+
+  .display{
+    padding: 18px;
+  }
+
+  .current-operand{
+    font-size: 34px;
+  }
+
+  .main{
+    gap: 12px;
+    padding: 16px;
+  }
+
+  button{
+    font-size: 18px;
+    padding: 12px 8px;
+    border-radius: 10px;
+  }
+}
+

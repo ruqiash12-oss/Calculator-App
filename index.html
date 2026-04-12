@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <title>Frontend Mentor | Calculator app</title>
+
+ <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="calculator-container">
+    <header>
+      <div class="logo">calc</div>
+
+      <div class="theme">
+        <div class="theme-name">THEME</div>
+
+        <div class="theme-control">
+          <div class="theme-numbers">
+            <span>1</span><span>2</span><span>3</span>
+          </div>
+
+          <div class="theme-check" role="radiogroup" aria-label="Theme">
+            <input type="radio" name="theme" id="theme1" checked>
+            <label for="theme1" class="theme-hit" aria-label="Theme 1"></label>
+
+            <input type="radio" name="theme" id="theme2">
+            <label for="theme2" class="theme-hit" aria-label="Theme 2"></label>
+
+            <input type="radio" name="theme" id="theme3">
+            <label for="theme3" class="theme-hit" aria-label="Theme 3"></label>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="display">
+      <div data-previous-operand class="previous-operand"></div>
+      <div data-current-operand class="current-operand"></div>
+    </div>
+
+    <div class="main">
+      <button class="number" onclick="Calculation('7')">7</button>
+      <button class="number" onclick="Calculation('8')">8</button>
+      <button class="number" onclick="Calculation('9')">9</button>
+      <button class="delete-btn" onclick="deleteResult()">DEL</button>
+
+      <button class="number" onclick="Calculation('4')">4</button>
+      <button class="number" onclick="Calculation('5')">5</button>
+      <button class="number" onclick="Calculation('6')">6</button>
+      <button class="operator" onclick="Calculation('+')">+</button>
+
+      <button class="number" onclick="Calculation('1')">1</button>
+      <button class="number" onclick="Calculation('2')">2</button>
+      <button class="number" onclick="Calculation('3')">3</button>
+      <button class="operator" onclick="Calculation('-')">-</button>
+      <button class="number" onclick="Calculation('.')">.</button>
+      <button class="number" onclick="Calculation('0')">0</button>
+      <button class="operator" onclick="Calculation('/')">/</button>
+      <button class="operator" onclick="Calculation('*')">x</button>
+
+      <button class="clear-button" onclick="clearResult()">RESET</button>
+
+      <button class="calculate-button" onclick="calculateResult()">=</button>
+    </div>
+  </main>
+
+  
+    <footer class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </footer>
+   <script src="script.js"></script>
+</body>
+</html>
